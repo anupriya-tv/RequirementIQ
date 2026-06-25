@@ -1,0 +1,33 @@
+MEETING NOTES — Project Kickoff
+Date: Internal Sync
+Attendees: Sarah (Product), Ravi (Engineering Lead), Priya (Finance), Tom (Customer Success)
+
+---
+
+sarah said the new dashboard needs to show sales data. ravi asked which sales data exactly 
+but we moved on. priya wants export functionality for her team. tom mentioned customers 
+have been complaining about not being able to filter by date.
+
+the login should be faster. ravi said it currently takes like 4-5 seconds sometimes which 
+is bad. we need to fix that.
+
+admin users need more control. sarah wants admins to be able to create and delete user 
+accounts without going through IT every time. also admins should see who logged in and when.
+
+priya brought up that the export needs to go to excel because thats what finance uses. 
+but then tom said his team uses google sheets so maybe both? nobody agreed on this.
+
+customers should get email notifications. sarah said "like when something important happens" 
+but didn't specify what counts as important. tom said his customers keep asking about this.
+
+mobile support came up briefly. ravi said it would take a lot of work. sarah said it would 
+be nice to have. no decision made.
+
+the system should handle a lot of users. ravi mentioned something about peak traffic during 
+month end for finance. priya confirmed their team has around 200 people who might all log 
+in on the same day.
+
+password reset is currently broken according to tom. users have to email IT which takes 
+2 days. needs to be self-service asap.
+
+next steps were unclear. sarah said she'd send a follow up email. meeting ended early.
