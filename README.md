@@ -3,10 +3,10 @@
 
 > An AI-powered Business Requirements Analyzer that transforms raw meeting notes, emails, and stakeholder inputs into structured, professional Business Requirement Documents.
 
-![Status](https://img.shields.io/badge/Status-In_Development-f59e0b?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Live-22c55e?style=flat-square)
 ![React](https://img.shields.io/badge/React-Frontend-61dafb?style=flat-square&logo=react&logoColor=black)
-![Claude AI](https://img.shields.io/badge/Claude_AI-Powered-7c3aed?style=flat-square)
-![Python](https://img.shields.io/badge/Python-Backend-3b82f6?style=flat-square&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-Backend-000000?style=flat-square&logo=flask&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-Llama_3.3-f55036?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-10b981?style=flat-square)
 
 ---
@@ -21,7 +21,7 @@ Mistakes at this stage cost companies thousands in rework.
 
 **RequirementIQ eliminates that bottleneck.**
 
-Paste raw notes. Get a structured, professional BRD output — with ambiguities flagged — in under 10 seconds.
+Paste raw notes. Get a structured, professional requirements breakdown — with ambiguities flagged — in seconds.
 
 ---
 
@@ -31,10 +31,30 @@ Paste raw notes. Get a structured, professional BRD output — with ambiguities 
 |---|---|
 | 📋 **Smart Extraction** | Identifies functional & non-functional requirements from unstructured text |
 | 📝 **User Story Generator** | Auto-formats requirements as *"As a [user], I want [goal], so that [reason]"* |
-| ✅ **Acceptance Criteria** | Generates testable acceptance criteria for each user story |
+| ✅ **Acceptance Criteria** | Generates testable acceptance criteria for key requirements |
 | 🚩 **Ambiguity Detector** | Flags vague or conflicting statements that need stakeholder clarification |
-| 📄 **BRD Export** | One-click export of the full document as a formatted PDF |
-| 🔁 **Iteration Ready** | Edit and regenerate specific sections without reprocessing everything |
+| 🎨 **Editorial UI** | A clean, magazine-style interface — not a developer dashboard |
+
+---
+
+## 🖥️ Live Demo
+
+> Paste real stakeholder notes and watch the requirements unfold in real time.
+
+**Try it with this example:**
+```
+Sarah said the dashboard needs to show sales data. Priya wants export to Excel.
+Login takes 4-5 seconds, needs to be faster. Password reset is broken,
+users wait 2 days for IT.
+```
+
+**What comes back:**
+- Functional requirements, each tagged with priority and source
+- Non-functional requirements with measurable targets
+- User stories in proper "As a... I want... so that..." format
+- A dedicated "Needs clarification" section flagging exactly what's still ambiguous
+
+*(Screenshots below — live demo link coming once deployed)*
 
 ---
 
@@ -43,28 +63,19 @@ Paste raw notes. Get a structured, professional BRD output — with ambiguities 
 ```
 RequirementIQ/
 │
-├── client/                        # React frontend
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── InputPanel.jsx     # Raw notes input area
-│   │   │   ├── BRDOutput.jsx      # Structured output display
-│   │   │   ├── AmbiguityCard.jsx  # Flagged issues component
-│   │   │   └── ExportButton.jsx
-│   │   ├── App.jsx
-│   │   └── index.css
-│   └── package.json
+├── client/                        # React frontend (Vite)
+│   └── src/
+│       └── App.jsx                # Editorial split-screen UI
 │
 ├── server/                        # Python backend
 │   ├── app.py                     # Flask API
-│   ├── analyzer.py                # Claude API integration
-│   └── prompts.py                 # Prompt engineering templates
+│   └── analyzer.py                # Groq (Llama 3.3) integration + prompt logic
 │
 ├── sample_inputs/
-│   ├── meeting_notes_example.txt  # Example raw stakeholder input
-│   └── email_thread_example.txt
+│   └── meeting_notes_example.txt  # Example raw stakeholder input
 │
 ├── sample_outputs/
-│   └── BRD_sample.pdf            # Example generated BRD
+│   └── BRD_sample_output.md       # Example generated output
 │
 ├── requirements.txt
 └── README.md
@@ -75,17 +86,17 @@ RequirementIQ/
 ## 🧠 How It Works
 
 ```
-Raw Input (meeting notes / emails / voice transcript)
+Raw input (meeting notes / emails / transcripts)
         ↓
-  [ React Frontend ]  ← User pastes text, clicks Analyze
+  [ React Frontend ]   ← User pastes text, clicks Analyze
         ↓
-  [ Python Backend ]  ← Flask receives request
+  [ Flask Backend ]    ← Receives request, calls analyzer
         ↓
-  [ Claude AI API ]   ← Structured prompt extracts requirements
+  [ Groq API — Llama 3.3 70B ]  ← Structured prompt extracts requirements
         ↓
-  Parsed JSON response → Functional Reqs / User Stories / Ambiguities
+  Parsed JSON → Functional Reqs / User Stories / Ambiguities
         ↓
-  [ React Frontend ]  ← Renders structured BRD with export option
+  [ React Frontend ]   ← Renders editorial-style structured output
 ```
 
 ---
@@ -105,15 +116,13 @@ Finance team needs exports but we're not sure in what format yet."
 - FR-01: The system shall provide user authentication via login
 - FR-02: Admin users shall have access to a reporting dashboard
 - FR-03: Users shall be able to reset their passwords via a self-service flow
-- FR-04: The system shall support data export for Finance team users
 
 🚩 **Ambiguities Flagged**
-- "Fast" — no performance benchmark defined. Clarify expected load time (e.g. <2s page load)
+- "Fast" — no performance benchmark defined. Clarify expected load time
 - Export format unspecified — confirm with Finance team: CSV, Excel, or PDF?
 
 📝 **User Stories Generated**
 - As a registered user, I want to log in securely so that I can access my account
-- As an admin, I want to view reports so that I can monitor system activity
 - As a user, I want to reset my password so that I can regain access if locked out
 
 ---
@@ -122,11 +131,10 @@ Finance team needs exports but we're not sure in what format yet."
 
 RequirementIQ directly addresses one of the highest-friction tasks in a BA's workflow:
 
-- Reduces BRD drafting time from hours to minutes
+- Reduces requirements drafting time from hours to minutes
 - Ensures no requirement is missed from stakeholder conversations
 - Creates a consistent, professional documentation format every time
 - Flags ambiguities early — before they become expensive development rework
-- Makes BAs more productive without replacing their judgment
 
 ---
 
@@ -138,19 +146,22 @@ git clone https://github.com/yourusername/RequirementIQ.git
 cd RequirementIQ
 
 # Backend setup
+cd server
 pip install -r requirements.txt
-python server/app.py
+python app.py
 
-# Frontend setup
+# Frontend setup (in a new terminal)
 cd client
 npm install
-npm start
+npm run dev
 ```
 
-Add your Claude API key to a `.env` file:
+Add your Groq API key to a `.env` file inside `server/`:
 ```
-ANTHROPIC_API_KEY=your_key_here
+GROQ_API_KEY=your_key_here
 ```
+
+Get a free key at [console.groq.com](https://console.groq.com).
 
 ---
 
@@ -158,13 +169,23 @@ ANTHROPIC_API_KEY=your_key_here
 
 - [x] Project structure & documentation
 - [x] Sample input/output defined
-- [ ] Flask backend with Claude API integration
-- [ ] Prompt engineering for requirement extraction
-- [ ] React frontend — input panel + BRD output view
-- [ ] Ambiguity detection layer
+- [x] Flask backend with Groq (Llama 3.3) integration
+- [x] Prompt engineering for requirement extraction
+- [x] React frontend — editorial split-screen UI
+- [x] Ambiguity detection layer
+- [ ] Deploy live (Vercel + Render)
 - [ ] PDF export functionality
 - [ ] Voice transcript input support
 - [ ] Multi-stakeholder conflict detection
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend:** React (Vite), custom CSS-in-JS, Fraunces + Inter typography
+**Backend:** Flask, Python
+**AI:** Groq API — Llama 3.3 70B Versatile
+**Dev environment:** GitHub Codespaces
 
 ---
 
@@ -173,11 +194,11 @@ ANTHROPIC_API_KEY=your_key_here
 **Anupriya T.V** — B.Tech Computer Science & Data Science, Presidency University Bengaluru
 CSI Chapter President | IEEE Student Coordinator | BEL Process Automation Intern
 
-I build tools that make business teams faster — without requiring them to become technical.
+Passionate about translating data into decisions that non-technical teams can actually use.
 
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat-square&logo=github)](https://github.com/yourusername)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0a66c2?style=flat-square&logo=linkedin)](https://linkedin.com/in/yourprofile)
 
 ---
 
-*Built with React · Python · Flask · Claude AI API · Anthropic*
+*Built with React · Flask · Groq API · Llama 3.3*
