@@ -196,7 +196,7 @@ CSI Chapter President | IEEE Student Coordinator | BEL Process Automation Intern
 
 Passionate about translating data into decisions that non-technical teams can actually use.
 
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat-square&logo=github)](https://github.com/yourusername)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat-square&logo=github)](https://github.com/anupriya-tv)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0a66c2?style=flat-square&logo=linkedin)](https://linkedin.com/in/yourprofile)
 
 ---
